@@ -3,11 +3,14 @@ require('minitest/reporters')
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 require_relative("../guest")
+require_relative("../song")
+
 
 class GuestTest < MiniTest::Test
 
   def setup
-    @guest = Guest.new("Chris", 100, "Walk the Line")
+    @song = Song.new("Walk the Line","Johnny Cash", "Country")
+    @guest = Guest.new("Chris", 100, @song)
   end
 
   def test_guest_has_name
@@ -19,7 +22,7 @@ class GuestTest < MiniTest::Test
   end
 
   def test_guest_has_favorite_song
-    assert_equal("Walk the Line", @guest.favorite_song)
+    assert_equal("Walk the Line", @guest.favorite_song.name)
   end
 
 
